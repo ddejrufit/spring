@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>1_jQuery.html</title>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+	// $(선택자). 이벤트(콜백함수);
+	//		콜벡함수 : 어떤 이벤트에 의해 호출되어지는 함수
+	
+	/*$(document).ready(function init(){// 이(문서). 준비다 되면 (자동으로 호출될 함수);
+		alert('안녕?');
+		
+	}); */
+/*$(function(){
+		alert('준비완료');
+	})*/
+	$(function(){
+		$("h1").click(()=>{
+			$('h2').click(()=>{
+				alert('dddddddddd');
+			});
+		});
+		
+		//스위치 기능
+		let b = false;
+		$('h3').click(()=>{
+			b = !b; // true로 만들어라
+			alert(b);
+		});
+		let iiInput = $('#ii'); // document.getElementById('ii');
+		// <button>에 클릭이벤트가 발생하면 콜백함수가 자동으로 호출되도록 연결
+		$('button').click(()=>{
+			alert(iiInput.val());
+		});
+	});
+	
+	
+</script>
+</head>
+<body>
+<h1>오늘 날씨 되게 춥네요</h1>
+<h2>그래서 히터틀었더니</h2>
+<h3>좀 갑갑함</h3>
+<hr>
+<input id="ii"><button>출력</button><button>print</button>
+	<!-- 
+		유효성 검사 - XXXValidChecker.js
+			-> 유효성검사 편하게 하려고 함수를 정리해놓은것
+		웹페이지 이벤트처리 - jQuery.js
+			-> JS자체를 편하게 사용할 수 있도록 함수를 정리해놓은 것		
+	 -->
+</body>
+</html>

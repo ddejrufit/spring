@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kang.kangminip.sns.SNSMapper">
+	<delete id="deleteMsg"
+		parameterType="com.kang.kangminip.sns.SNSMsg">
+		delete from kang_sns
+		where k_no = #{k_no}
+	</delete>
+	<delete id="deleteReply"
+		parameterType="com.kang.kangminip.sns.SNSReply">
+		delete from kang_sns_reply
+		where kr_no = #{kr_no}
+	</delete>
+	<select id="getAllMsgCount" resultType="java.lang.Integer">
+		select count(*)	from kang_member, kang_sns where k_id = k_owner
+	</select>
+	<select id="getSearchMsgCount"
+		parameterType="com.kang.kangminip.sns.SNSSelector"
+		resultType="java.lang.Integer">
+		select count(*) from kang_member, kang_sns
+		where k_id = k_owner
+		and (k_txt like '%'||#{search}||'%' or k_id like '%'||#{search}||'%')
+	</select>
+	<select id="getMsg"
+		parameterType="com.kang.kangminip.sns.SNSSelector"
+		resultType="com.kang.kangminip.sns.SNSMsg">
+		select * from (
+		select rownum as rn, k_photo, k_id, k_txt, k_when, k_color, k_no
+		from ( select * from kang_member, kang_sns
+		where k_id = k_owner
+		and (k_txt like '%'||#{search}||'%' or k_id like '%'||#{search}||'%')
+		order by k_when desc ))
+		where rn &gt;= #{start} and rn &lt;= #{end}
+	</select>
+	<select id="getReply"
+		parameterType="com.kang.kangminip.sns.SNSMsg" resultType="com.kang.kangminip.sns.SNSReply">
+		select * 
+		from kang_sns_reply
+		where kr_k_no = #{k_no}
+		order by kr_when
+	</select>
+	<insert id="writeMsg" parameterType="com.kang.kangminip.sns.SNSMsg">
+		insert into kang_sns values(kang_sns_seq.nextval, #{k_id}, #{k_txt}, sysdate, #{k_color})
+	</insert>
+	<insert id="writeReply"	parameterType="com.kang.kangminip.sns.SNSReply">
+		insert into kang_sns_reply values(kang_sns_reply_seq.nextval, #{kr_k_no}, #{kr_owner}, #{kr_txt}, sysdate)
+	</insert>
+	<update id="updateMsg"
+		parameterType="com.kang.kangminip.sns.SNSMsg">
+		update kang_sns
+		set k_txt = #{k_txt}
+		where k_no = #{k_no}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>3_example.html</title>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+	$(()=>{
+	//	alert('ㅎㅇ');
+	
+	let arrobj = [
+		{
+			c : 'green',
+			bc: 'red'
+		},
+		{
+			c : 'yellow',
+			bc: 'blue'
+		},
+		{
+			c : 'pink',
+			bc: 'teal'
+		},
+	];
+		$('h1').each(function(i,h){
+		$(h).css('color', arrobj[i].c);
+		$(h).css('background-color',arrobj[i].bc);
+	});
+		let i =0;
+		setInterval(()=>{
+			i++;
+			if (i == 10){
+				i=1;
+			}
+			$('#i').attr('src','golf/s'+ i +'.png');
+		}, 500);
+		
+		
+	});
+
+</script>
+</head>
+<body>
+	<h1>ㅋㅋㅋㅋㅋ</h1>
+	<h1>ㅎㅎㅎㅎㅎ</h1>
+	<h1>ㅠㅠㅠㅠㅠ</h1>
+	<img id="i" src="golf/s1.png">
+</body>
+</html>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kang.dec042.error.ErrorMapper">
+	<select id="getAllError" resultType="com.kang.dec042.error.Error">
+		select * from dec04_error 
+	</select>
+	<select id="searchError" resultType="com.kang.dec042.error.Error" parameterType="com.kang.dec042.error.Error">
+		select * from dec04_error where e_what like '%'||#{e_what}||'%' order by e_where
+	</select>
+</mapper>

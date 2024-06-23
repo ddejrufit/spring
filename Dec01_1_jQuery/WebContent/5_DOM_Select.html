@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>5_DOM_Select.html</title>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+	$(()=>{
+		//alert('gd')
+		$('button').click(()=>{
+		// $('button').css('background-color', 'red'); // 모든 버튼이 한번에 빨간 색	
+		
+		// $(this) : 클릭 이벤트 콜백 함수인 asdf()를 호출한 장본인
+		//			누른 버튼만 콜백 함수가 실행되도록
+		$(this).css('background-color','red');
+		
+		// 누른 버튼이 있는 td에 배경색 주기
+		// $('td').css('background-color', 'teal');//(x)
+		//parent() : 내가 누른 this의 한단계 상위객체
+		//		cf) children : 하위객체
+		$(this).parent().css('background-color','teal');
+		
+		// 내가 누른 버튼이 있는 table의 테두리를 blue
+		$(this).parent('table').css('background-color','blue');
+		//  closest('CSS선택자') : 상위에 있는 것 중에서 가장 가까운 css선택자
+		//		cf) 특정 선택자 찾기: find('CSS선택자')
+		$(this).closest('table').css('border','blue solid 3px');
+		});
+		
+		// td를 클릭했을 때 눌러진 td의 배경색을 노란색
+		// td를 클릭했을 때 그 td 속에 들어있는 모든 것들의 배경을 핑크색으로
+		// td를 클릭했을 때 그 td속에 들어있는 버튼의 테두리 색 초록색
+	
+		$('td').click(() =>{
+			$(this).css('background-color','yellow');
+			$(this).children().css('background-color','pink');
+			$(this).find('button').css('border','green solid 3px');
+		});
+		
+		// input에 입력을 하고 버튼을 눌렀을 때
+		// input에 쓴 글자가 input 옆 버튼의 글자색이 되도록
+		$('button').click(function() {
+			// 버튼 클릭했을 때 input의 값을 입력할 수 있어야
+			//let c = $(this).parent().find('inout').val();
+			//alert(c);
+			
+			//siblings() : 동일선상에 있는 특정 선택자
+			let c = $(this).siblings('input').val();
+			//alert(c)
+			$(this).css('color', c);
+		});
+		});
+	
+</script>
+<style type="text/css">
+	td{
+		height:50px;
+	}
+	input{
+	height:50px;
+	}
+	button{
+		width: 100px;
+		height: 50px;
+	}
+</style>
+</head>
+<body>
+<table border="1">
+ <tr>
+ 	<td><input><button>11111111</button></td>
+ </tr>
+  <tr>
+ 	<td><input><button>22222222</button></td>
+ </tr>
+</table>
+<table border="1">
+ <tr>
+ 	<td><input><button>33333333</button></td>
+ </tr>
+  <tr>
+ 	<td><input><button>44444444</button></td>
+ </tr>
+</table>
+
+</body>
+</html>

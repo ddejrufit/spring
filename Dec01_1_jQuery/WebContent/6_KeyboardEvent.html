@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>6_KeyboardEvent.html</title>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+$(()=>{
+	//alert('dd');
+	// input에서 keyboar를 누르면 >> 누른 순간에 : keydown
+	/*$('input').keydown(function(){
+		$('h1').text('키보드를 누르는 동안');
+		return false; // 기능 발동하기 전에 return false; 가 있으면
+					// 원래기능을 못하도록 막을수도 잇음
+		
+	});*/
+	// 특정 키를 눌렀을 때 뭔가 하고 싶다면
+		$('input').keydown(function(e){
+			$('h1').text(e.keyCode); // 키보드 아스키 값 : 모든키에는 고유한 값이 있음
+			
+			if(e.keyCode == 13){ // enter 키 : 13
+				alert('와우~!');
+			}else if(e.keyCode == 65){// a키를 사용하지 못하게 막기
+				return false;
+			}else if (e.keyCode == 75){
+				let t = $('input').val();
+				$('input').val(t+'ㅋ');
+				return false;//원래 기능 못하게 해라 -> k 못쓰게 해라
+			}
+		});
+	
+		//	keyup : 키보드에서 손 때면
+		$('input').keyup(function(){
+	//		alert('asdf');
+		$('h1').text('키보드에서 손 땜?');
+		
+		});
+	
+		// html 자체에도 keydown이벤트 심을 수 있다
+		$('html').keydown(function(e){
+			/*if(e.keycode == 116){ // f5
+				return false; // 현재 웹사이트의 f5키를 봉인
+			}*/
+			if (e.keyCode == 39){//방향키 오른쪽
+				l += 5; // 방향키 누를 때마다 5씩 늘어나게
+				$('h2').css('left',l + 'px');
+			}
+	
+		});
+	
+		
+	});
+</script>
+<style type="text/css">
+	h2{
+		position: fixed;
+	}
+</style>
+
+</head>
+<body>
+<h2>텍스트</h2>
+	<input><p>
+	<h1></h1>
+</body>
+</html>

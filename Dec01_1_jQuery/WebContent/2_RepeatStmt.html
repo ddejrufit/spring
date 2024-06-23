@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+	$(()=>{
+//		alert('ㅇ?')
+
+	// JavaScript
+	//		배역 : [1, 56, 3, 86, 123];
+	//		객체: {menu:"짜장면", price : 3000};
+	
+	// 배열 속에 객체 : 이 형태로 DB에 있는 데이터 표현한 것: JSON
+
+	let arrobj = [
+		{
+			menu : "라면",
+			price: 4000
+		},
+		{
+			menu :"김밥",
+			price:3500
+		},
+		{
+			menu :"떡볶이",
+			price:5000
+		},
+	];
+	
+	//	JavaScript의 배열 대상 반복문
+	//		for(var i = 0; ..)	- 인덱스 활용도가 높은 편
+	//		for ... of 			- 객체에 순서대로 접근이 용이한 편
+	//		$.each(배열, 데이터 한줄 만날 때마다 호출될 콜백함수)
+	//			-인덱스도 가지고 있고, 객체에 접근하기도 용이한 편
+	$.each(arrobj, function(i, lunch) {
+		alert(i + 1 + " ] " + lunch.menu + " : " + lunch.price);
+	});
+	
+	// h1 -> 순서대로 글자 크기가 10/ 20/ 30 pt 되도록
+	$('h1').each(function(i,h){
+		$(h).css('font-size',((i + 1) * 10) + 'pt');
+	});
+			
+	
+	});
+
+</script>
+</head>
+<body>
+	<h1>ㅋㅋㅋ</h1>
+	<h1>ㅎㅎㅎ</h1>
+	<h1>ㅠㅠㅠ</h1>
+</body>
+</html>

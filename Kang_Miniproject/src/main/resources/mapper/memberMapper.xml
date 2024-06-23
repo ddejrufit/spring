@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kang.kangminip.member.MemberMapper">
+	<select id="getMemberById" parameterType="com.kang.kangminip.member.Member" resultType="com.kang.kangminip.member.Member">
+		select * from kang_member where k_id = #{k_id}
+	</select>
+	<insert id="join" parameterType="com.kang.kangminip.member.Member">
+		insert into kang_member values(#{k_id}, #{k_pw}, #{k_name}, #{k_addr}, #{k_photo}, #{k_role})
+	</insert>
+	<delete id="bye" parameterType="com.kang.kangminip.member.Member">
+		delete from kang_member where k_id = #{k_id}	
+	</delete>
+	<update id="update" parameterType="com.kang.kangminip.member.Member">
+		update kang_member set k_pw = #{k_pw}, k_name = #{k_name}, k_addr = #{k_addr}, k_photo = #{k_photo}
+		where k_id=#{k_id}
+	</update>
+</mapper>
